@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang= "en-US">
+<head>
+    <title>Dictionary Man</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+ 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    
+    <style>
+        h1, div, form {text-align:center
+        }
+       
+        #map {height: 180px}
+    </style>
+ 
+</head>
+<body>
+    <div class="jumbotron">
+        <h1 class="display-1">Dictionary</h1>
+        <p>What would you like me to describe ?</p> 
+        <h3> <%= name %> </h3>
+    </div>
+        <br>
+        <div class="container">
+
+        <form>
+            <input type = "text" method="GET" id="IPaddress" placeholder="Type Word...">
+            <button type= "button" class= "btn" onclick= "FindData()"> Search </button>
+        </form>
+        <br>
+        <center>
+        <div class="result" id="result"></div>
+        <form action="/logout?_method=DELETE" method="POST">
+          <button type="submit">Log Out</button>
+        </form>
+    </center>
+      </div>
+        <br>
+    </div>
+    <br>
+ 
+    <script>
+        function FindData(){    
+           
+
+            var Spec_Word = document.getElementById("IPaddress").value;
+            var IP_Address_URL = "https://www.dictionaryapi.com/api/v3/references/collegiate/json/" + Spec_Word + "?key=bec9c065-4645-4b07-8e40-680c4b7ff6a6";
+           
+
+            $.ajax({
+                type:"GET",
+                url: IP_Address_URL,
+
+                success:function(response){
+                    console.log('res', response);
+
+                    document.getElementById("def").innerHTML = response[0].shortdef[0];
+
+ 
+                },  
+            });
+        };
+       
+    </script>
+ 
+   <b>Definition:</b> <p style = "text-align: center;" id="def"> </p>
+ 
+ 
+ 
+ 
+   <footer>
+    <nav>
+        <p>
+            <a href="https://www.termsofusegenerator.net/">Terms of Use</a> |
+            <a href="https://termify.io/privacy-policy-generator?gclid=Cj0KCQjw5JSLBhCxARIsAHgO2SfCEnYZyNLqiJECDR3M9VWChDGHJRpkUYNtj99W5DjP0XrhTnDF7tgaAvkUEALw_wcB">Privacy Policy</a>
+        </p>
+    <p>Copyright &copy; 2021 William Wellington 500811...</p>
+</footer>
+       
+    </body>
+</html>
+ 
+ 
+ 
+
